@@ -19,10 +19,15 @@ app.use(helmet())
 app.use(cors())
 
 //connect to database
+mongoose.Promise = global.Promise;
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true,
+    useCreateIndex: true,
+    useUnifiedTopology: true } );
 
+mongoose.connection.on('error', () => {
+    console.log("Cannot connect to database");
+});
 
-let PORT = process.env.PORT || 3001;
-
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+app.listen(process.env.PORT, () => {
+    console.log(`Server is running on port ${process.env.PORT}`);
 });
