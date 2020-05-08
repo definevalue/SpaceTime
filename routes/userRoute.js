@@ -1,7 +1,8 @@
 const express = require('express');
 const userCtrl = require('../controllers/userCtrl');
+const authCtrl = require('../controllers/authCtrl');
 
-const router = express.Router()
+const router = express.Router();
 
 //get or create a new user
 router.route('/users')
@@ -10,9 +11,9 @@ router.route('/users')
 
 //get, update, or delete an user record
 router.route('/users/:userId')
-    .get(userCtrl.read)
-    .put(userCtrl.update)
-    .delete(userCtrl.remove);
+    .get(authCtrl.requireSignin, userCtrl.read) //need to signin 
+    .put(authCtrl.requireSignin, authCtrl.hasAuthorization, userCtrl.update)//need to signin and has authorization
+    .delete(authCtrl.requireSignin, authCtrl.hasAuthorization, userCtrl.remove); //need to signin and has authorization
 
 router.param('userId', userCtrl.userByID);
 

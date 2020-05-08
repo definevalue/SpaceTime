@@ -5,7 +5,7 @@ const extend = require('lodash/extend');
 const create = async (req, res) => {
     const user = new User(req.body);
     try {
-        user = await user.save();
+        await user.save();
         return res.status(200).json({
             message: "Successfully signed up!"
         });
@@ -87,4 +87,13 @@ const remove = async (req, res) => {
         });
     }
 }
+
+module.exports = {
+    create, 
+    update, 
+    userByID, 
+    list, 
+    remove, 
+    read
+};
    

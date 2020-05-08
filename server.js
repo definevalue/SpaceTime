@@ -10,6 +10,7 @@ require('dotenv').config();
 
 //import routes
 const userRoutes = require('./routes/userRoute');
+const authRoutes = require('./routes/authRoute');
 
 const app = express();
 
@@ -33,7 +34,18 @@ mongoose.connection.on('error', () => {
 
 //use routes
 app.use('/', userRoutes);
+app.use('/', authRoutes);
 
+//catch authentication and authorization error
+app.use((err, req, res, next) => {
+    if (err.name === 'UnauthorizedError') {
+        res.status(401).json({"error" : err.name + ": " + err.message})
+    }else if (err) {
+        res.status(400).json({"error" : err.name + ": " + err.message})
+        console.log(err)
+    }
+});
+   
 app.listen(process.env.PORT, () => {
     console.log(`Server is running on port ${process.env.PORT}`);
 });
