@@ -8,6 +8,9 @@ const helmet = require('helmet');
 const mongoose = require('mongoose');
 require('dotenv').config();
 
+//import routes
+const userRoutes = require('./routes/userRoute');
+
 const app = express();
 
 //use middlewares
@@ -27,6 +30,9 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true,
 mongoose.connection.on('error', () => {
     console.log("Cannot connect to database");
 });
+
+//use routes
+app.use('/', userRoutes);
 
 app.listen(process.env.PORT, () => {
     console.log(`Server is running on port ${process.env.PORT}`);
