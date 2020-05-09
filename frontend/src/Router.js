@@ -4,6 +4,7 @@ import Home from './shared/Home';
 import UserList from './userComponent/UserList';
 import Signup from './userComponent/Signup';
 import Signin from './authComponent/Signin';
+import Profile from './userComponent/Profile';
 
 const Router = () => {
     return(
@@ -13,6 +14,7 @@ const Router = () => {
                 <Route path="/users" component={UserList}/>
                 <Route path="/signup" component={Signup}/>
                 <Route path="/signin" component={Signin} />
+                <Route path="/user/:userId" component={Profile}/>
             </Switch>
         </div>
     );
