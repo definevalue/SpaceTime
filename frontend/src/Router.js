@@ -5,10 +5,12 @@ import UserList from './userComponent/UserList';
 import Signup from './userComponent/Signup';
 import Signin from './authComponent/Signin';
 import Profile from './userComponent/Profile';
+import Navigation from './shared/Navigation';
 
 const Router = () => {
     return(
         <div>
+            <Navigation />
             <Switch>
                 <Route exact path="/" component={Home} />
                 <Route path="/users" component={UserList}/>
