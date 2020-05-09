@@ -9,9 +9,9 @@ import galaxy from './../assets/images/galaxy.jpg';
 //custom styles
 const useStyles = makeStyles(theme => ({
     card: {
-        maxWidth: 600,
+        maxWidth: 800,
         margin: 'auto',
-        marginTop: theme.spacing(5)
+        marginTop: theme.spacing(2.5)
     },
     title: {
         padding:`${theme.spacing(3)}px ${theme.spacing(2.5)}px ${theme.spacing(2)}px`,
