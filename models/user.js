@@ -19,7 +19,7 @@ const UserSchema = new mongoose.Schema(
             type: Date,
             default: Date.now
         },
-        updated: Date,   
+        updated: Date,
         password: {
             type: String,
             required: "Password is required"
@@ -27,19 +27,25 @@ const UserSchema = new mongoose.Schema(
         photo: {
             data: Buffer,
             contentType: String
-        }
-    } 
+        },
+        about: {
+            type: String,
+            trim: true
+        },
+        following: [{ type: mongoose.Schema.ObjectId, ref: 'User' }],
+        followers: [{ type: mongoose.Schema.ObjectId, ref: 'User' }]
+    }
 );
 
-UserSchema.pre('save', function(next) {
+UserSchema.pre('save', (next) => {
     var user = this;
     // Generate a password hash when the password changes (or a new password)
     if (!user.isModified('password')) return next();
     // Generate a salt
-    bcrypt.genSalt(10, function(err, salt) {
+    bcrypt.genSalt(10, (err, salt) => {
         if (err) return next(err);
         // Combining Salt to Generate New Hash
-        bcrypt.hash(user.password, salt, function(err, hash) {
+        bcrypt.hash(user.password, salt, (err, hash) => {
             if (err) return next(err);
             // Overwriting plaintext passwords with hash
             user.password = hash;
@@ -49,8 +55,8 @@ UserSchema.pre('save', function(next) {
 });
 
 //compare password method
-UserSchema.methods.comparePassword = function(candidatePassword, cb) {
-    bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
+UserSchema.methods.comparePassword = (candidatePassword, cb) => {
+    bcrypt.compare(candidatePassword, this.password, (err, isMatch) => {
         if (err) return cb(err);
         cb(null, isMatch);
     });

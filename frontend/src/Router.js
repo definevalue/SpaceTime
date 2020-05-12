@@ -8,6 +8,8 @@ import Signin from './authComponent/Signin';
 import Profile from './userComponent/Profile';
 import Navigation from './shared/Navigation';
 import SideBar from './shared/SideBar';
+import PrivateRoute from './authComponent/PrivateRoute';
+import EditProfile from './userComponent/EditProfile';
 
 const Router = () => {
     return(
@@ -26,6 +28,7 @@ const Router = () => {
                         <Route path="/signup" component={Signup}/>
                         <Route path="/signin" component={Signin} />
                         <Route path="/user/:userId" component={Profile}/>
+                        <PrivateRoute path="/user/edit/:userId" component={EditProfile}/>
                     </Switch>
                 </Grid>
                 <Grid item xs={3}>
