@@ -15,6 +15,7 @@ import { findPeople, follow } from './user'
 import auth from '../authComponent/helper'
 import Snackbar from '@material-ui/core/Snackbar'
 import ViewIcon from '@material-ui/icons/Visibility'
+import baseUrl from '../config'
 
 const useStyles = makeStyles(theme => ({
     root: theme.mixins.gutters({
@@ -100,7 +101,7 @@ export default function FindPeople() {
                     return <span key={i}>
                         <ListItem>
                             <ListItemAvatar className={classes.avatar}>
-                                <Avatar src={'/api/users/photo/' + item._id} />
+                                <Avatar src={`${baseUrl}/users/photo/` + item._id} />
                             </ListItemAvatar>
                             <ListItemText primary={item.name} />
                             <ListItemSecondaryAction className={classes.follow}>

@@ -11,6 +11,7 @@ require('dotenv').config();
 //import routes
 const userRoutes = require('./routes/userRoute');
 const authRoutes = require('./routes/authRoute');
+const postRoutes = require('./routes/postRoute');
 
 const app = express();
 
@@ -36,6 +37,7 @@ mongoose.connection.on('error', () => {
 //use routes
 app.use('/', userRoutes);
 app.use('/', authRoutes);
+app.use('/', postRoutes);
 
 //catch authentication and authorization error
 app.use((err, req, res, next) => {

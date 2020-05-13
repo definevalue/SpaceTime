@@ -12,6 +12,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import auth from '../authComponent/helper'
 import { read, update } from './user'
 import { Redirect } from 'react-router-dom'
+import baseUrl from '../config'
 
 const useStyles = makeStyles(theme => ({
     card: {
@@ -112,8 +113,8 @@ export default function EditProfile({ match }) {
     }
 
     const photoUrl = values.id
-        ? `http://localhost:3001/users/photo/${values.id}?${new Date().getTime()}`
-        : 'http://localhost:3001/users/defaultphoto';
+        ? `${baseUrl}/users/photo/${values.id}?${new Date().getTime()}`
+        : `${baseUrl}/users/defaultphoto`;
 
     if (values.redirectToProfile) {
         return (<Redirect to={'/user/' + values.id} />)

@@ -1,5 +1,4 @@
-
-const baseUrl = "http://localhost:3001";
+import baseUrl from '../config';
 
 //signin method
 const signin = async (user) => {

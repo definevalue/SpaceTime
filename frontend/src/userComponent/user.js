@@ -1,6 +1,5 @@
 //all methods to interact with backend are defined here
-
-const baseUrl = "http://localhost:3001";
+import baseUrl from '../config';
 
 //create a new user
 const create = async (user) => {

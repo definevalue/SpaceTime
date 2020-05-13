@@ -5,6 +5,7 @@ import Typography from '@material-ui/core/Typography'
 import { Link } from 'react-router-dom'
 import GridList from '@material-ui/core/GridList'
 import GridListTile from '@material-ui/core/GridListTile'
+import baseUrl from '../config'
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -36,7 +37,7 @@ export default function FollowGrid(props) {
             {props.people.map((person, i) => {
                 return <GridListTile style={{ 'height': 120 }} key={i}>
                     <Link to={"/user/" + person._id}>
-                        <Avatar src={`http://localhost:3001/users/photo/` + person._id} className={classes.bigAvatar} />
+                        <Avatar src={`${baseUrl}/users/photo/` + person._id} className={classes.bigAvatar} />
                         <Typography className={classes.tileText}>{person.name}</Typography>
                     </Link>
                 </GridListTile>

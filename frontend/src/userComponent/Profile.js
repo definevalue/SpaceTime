@@ -16,8 +16,9 @@ import auth from '../authComponent/helper'
 import { read } from './user'
 import { Redirect, Link } from 'react-router-dom'
 import FollowButton from './FollowButton';
-//import ProfileTabs from './../user/ProfileTabs'
-//import { listByUser } from './../post/api-post.js'
+import ProfileTabs from './ProfileTabs';
+import { listByUser } from '../postComponent/postAPI'
+import baseUrl from '../config'
 
 const useStyles = makeStyles(theme => ({
     root: theme.mixins.gutters({
@@ -45,7 +46,7 @@ export default function Profile({ match }) {
         redirectToSignin: false,
         following: false
     })
-    //const [posts, setPosts] = useState([])
+    const [posts, setPosts] = useState([])
     const jwt = auth.isAuthenticated()
 
     useEffect(() => {
@@ -90,29 +91,30 @@ export default function Profile({ match }) {
         })
     }
     
-    // const loadPosts = (user) => {
-    //     listByUser({
-    //         userId: user
-    //     }, {
-    //         t: jwt.token
-    //     }).then((data) => {
-    //         if (data.error) {
-    //             console.log(data.error)
-    //         } else {
-    //             setPosts(data)
-    //         }
-    //     })
-    // }
-    // const removePost = (post) => {
-    //     const updatedPosts = posts
-    //     const index = updatedPosts.indexOf(post)
-    //     updatedPosts.splice(index, 1)
-    //     setPosts(updatedPosts)
-    // }
+    const loadPosts = (user) => {
+        listByUser({
+            userId: user
+        }, {
+            t: jwt.token
+        }).then((data) => {
+            if (data.error) {
+                console.log(data.error)
+            } else {
+                setPosts(data)
+            }
+        })
+    }
+
+    const removePost = (post) => {
+        const updatedPosts = posts
+        const index = updatedPosts.indexOf(post)
+        updatedPosts.splice(index, 1)
+        setPosts(updatedPosts)
+    }
 
     const photoUrl = values.user._id
-        ? `http://localhost:3001/users/photo/${values.user._id}?${new Date().getTime()}`
-        : 'http://localhost:3001/users/defaultphoto'
+        ? `${baseUrl}/users/photo/${values.user._id}?${new Date().getTime()}`
+        : `${baseUrl}/users/defaultphoto`
 
     if (values.redirectToSignin) {
         return <Redirect to='/signin' />
@@ -141,7 +143,7 @@ export default function Profile({ match }) {
                                 </Link>
                                 <DeleteProfile userId={values.user._id} />
                             </ListItemSecondaryAction>)
-                            : (<FollowProfileButton following={values.following} onButtonClick={clickFollowButton} />)
+                            : (<FollowButton following={values.following} onButtonClick={clickFollowButton} />)
                     }
 
                 </ListItem>
@@ -151,7 +153,7 @@ export default function Profile({ match }) {
                         new Date(values.user.created)).toDateString()} />
                 </ListItem>
             </List>
-            {/* <ProfileTabs user={values.user} posts={posts} removePostUpdate={removePost} /> */}
+            <ProfileTabs user={values.user} posts={posts} removePostUpdate={removePost} />
         </Paper>
     )
 }
