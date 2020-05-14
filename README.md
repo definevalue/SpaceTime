@@ -27,6 +27,7 @@ SpaceTime is a fully functioning social media website created with JavaScript, N
 - the app automatically opens on the browser
 
 ## Deployment
+I you want to visit the app, follow the link below
 
-1. Frontend: 
+1. Frontend (click this link to visit the website): 
 2. Baclend:
