@@ -69,6 +69,7 @@ const update = (req, res) => {
                 error: "Photo could not be uploaded"
             })
         }
+        //console.log("Fields: " + fields);
         let user = req.profile
         user = extend(user, fields)
         user.updated = Date.now()

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect} from 'react'
 import Card from '@material-ui/core/Card'
 import CardHeader from '@material-ui/core/CardHeader'
 import CardContent from '@material-ui/core/CardContent'
@@ -16,10 +16,11 @@ import { Link } from 'react-router-dom'
 import { remove, like, unlike } from './postAPI'
 import Comments from './Comments'
 import auth from '../authComponent/helper'
+import baseUrl from '../config'
 
 const useStyles = makeStyles(theme => ({
     card: {
-        maxWidth: 600,
+        maxWidth: 750,
         margin: 'auto',
         marginBottom: theme.spacing(3),
         backgroundColor: 'rgba(0, 0, 0, 0.06)'
@@ -38,7 +39,8 @@ const useStyles = makeStyles(theme => ({
     photo: {
         textAlign: 'center',
         backgroundColor: '#f2f5f4',
-        padding: theme.spacing(1)
+        padding: theme.spacing(1), 
+        maxWidth: 800
     },
     media: {
         height: 200
@@ -61,9 +63,9 @@ const Post = (props) => {
         comments: props.post.comments
     })
 
-    // useEffect(() => {
-    //   setValues({...values, like:checkLike(props.post.likes), likes: props.post.likes.length, comments: props.post.comments})
-    // }, [])
+    useEffect(() => {
+      setValues({...values, like:checkLike(props.post.likes), likes: props.post.likes.length, comments: props.post.comments})
+    }, [])
 
     const clickLike = () => {
         let callApi = values.like ? unlike : like
@@ -102,7 +104,7 @@ const Post = (props) => {
         <Card className={classes.card}>
             <CardHeader
                 avatar={
-                    <Avatar src={'/api/users/photo/' + props.post.postedBy._id} />
+                    <Avatar src={`${baseUrl}/users/photo/` + props.post.postedBy._id} />
                 }
                 action={props.post.postedBy._id === auth.isAuthenticated().user._id &&
                     <IconButton onClick={deletePost}>
@@ -121,7 +123,7 @@ const Post = (props) => {
                     (<div className={classes.photo}>
                         <img
                             className={classes.media}
-                            src={'/api/posts/photo/' + props.post._id}
+                            src={`${baseUrl}/posts/photo/` + props.post._id}
                             alt="Post"
                         />
                     </div>)}

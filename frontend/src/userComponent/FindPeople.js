@@ -50,6 +50,7 @@ export default function FindPeople() {
         followMessage: ''
     })
     const jwt = auth.isAuthenticated()
+    console.log("Hello there");
 
     useEffect(() => {
         const abortController = new AbortController()
