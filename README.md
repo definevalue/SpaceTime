@@ -6,7 +6,9 @@ SpaceTime is a fully functioning social media website created with JavaScript, N
 * **Profile Feature:** Users can upload their profile image 
 
 ## Demo Image
+![MainPage](https://github.com/andrewta999/SpaceTime/blob/master/demo/MainPage.png)
 
+![MainPage2](https://github.com/andrewta999/SpaceTime/blob/master/demo/MainPage2.png)
 
 ## How to run the app locally
 1. Run the backend:
