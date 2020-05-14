@@ -1,15 +1,30 @@
-A social network app built with JavaScript, React, Node.js, and MongoDB
+# [SpaceTime] 
+SpaceTime is a fully functioning social media website created with JavaScript, Node.js, React, Express, and MongoDB
 
-How to run the backend
-1. run: npm install
-2. create a .env file in the root directory or the project and provide the following attributes
-- MONGO_URI: mongoDB URI to connect to your database
-- PORT: server port (Ex. 3001)
-- SECRET: a secret string to create token for authentication
-2. run: npm run dev
-3. the server is now running on port specified
+* **Post Feature:** Users of the app can post images and text or like and comments on a post 
+* **Follow Feature:** Users of the app can follow other users
+* **Profile Feature:** Users can upload their profile image 
 
-How to run the frontend
-1. run: npm install
-2. run: npm start
-3. the front-end is now running on localhost:3000
+## Demo Image
+
+
+## How to run the app locally
+1. Run the backend:
+- run command: npm install 
+- create a new file .env in the root directory and define the following variables inside this file
+    - MONGO_URI: an uri that connects to a mongo database
+    - PORT: the port that the backend runs on (Ex. 3001)
+    - JWT_SECRET: any string to authenticate user 
+- run command: npm run dev
+- the backend is now on localhost:3001
+
+2. Run the frontend:
+- run command: npm install
+- update the baseUrl variable inside config.js file if necessary
+- run command: npm start
+- the app automatically opens on the browser
+
+## Deployment
+
+1. Frontend: 
+2. Baclend:
