@@ -37,15 +37,15 @@ const UserSchema = new mongoose.Schema(
     }
 );
 
-UserSchema.pre('save', (next) => {
+UserSchema.pre('save', function(next){
     var user = this;
     // Generate a password hash when the password changes (or a new password)
     if (!user.isModified('password')) return next();
     // Generate a salt
-    bcrypt.genSalt(10, (err, salt) => {
+    bcrypt.genSalt(10, function(err, salt){
         if (err) return next(err);
         // Combining Salt to Generate New Hash
-        bcrypt.hash(user.password, salt, (err, hash) => {
+        bcrypt.hash(user.password, salt, function(err, hash){
             if (err) return next(err);
             // Overwriting plaintext passwords with hash
             user.password = hash;
@@ -55,11 +55,9 @@ UserSchema.pre('save', (next) => {
 });
 
 //compare password method
-UserSchema.methods.comparePassword = (candidatePassword, cb) => {
-    bcrypt.compare(candidatePassword, this.password, (err, isMatch) => {
-        if (err) return cb(err);
-        cb(null, isMatch);
-    });
-};
+UserSchema.methods.comparePassword = async function(pass){
+    const match = await bcrypt.compare(pass, this.password);
+    return match;
+}
 
 module.exports = mongoose.model("User", UserSchema);

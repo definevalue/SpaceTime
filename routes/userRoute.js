@@ -15,25 +15,29 @@ router.route('/users/:userId')
     .put(authCtrl.requireSignin, authCtrl.hasAuthorization, userCtrl.update)//need to signin and has authorization
     .delete(authCtrl.requireSignin, authCtrl.hasAuthorization, userCtrl.remove); //need to signin and has authorization
 
+//get photo
 router.route('/users/photo/:userId')
     .get(userCtrl.photo, userCtrl.defaultPhoto)
-router.route('/users/defaultphoto')
+router.route('/users/get/defaultphoto')
     .get(userCtrl.defaultPhoto)
 
-router.route('/users/follow')
+//follow users
+router.route('/users/post/follow')
     .put(authCtrl.requireSignin,
         userCtrl.addFollowing,
         userCtrl.addFollower)
 
-router.route('/users/unfollow')
+//unfollow users
+router.route('/users/post/unfollow')
     .put(authCtrl.requireSignin,
         userCtrl.removeFollowing,
         userCtrl.removeFollower)
 
+//find people to follow
 router.route('/users/findpeople/:userId')
     .get(authCtrl.requireSignin, userCtrl.findPeople)
 
-
+//get user with userId
 router.param('userId', userCtrl.userByID);
 
 module.exports = router;

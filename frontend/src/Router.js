@@ -10,29 +10,30 @@ import Navigation from './shared/Navigation';
 import SideBar from './shared/SideBar';
 import PrivateRoute from './authComponent/PrivateRoute';
 import EditProfile from './userComponent/EditProfile';
+import About from './shared/About';
 
 const Router = () => {
     return(
         <div>
-            <Grid container spacing={3}>
+            <Grid container spacing={1}>
                 <Grid item xs={12}>
                     <Navigation />
                 </Grid>
-                <Grid item xs={3}>
+                <Grid item xs={2}>
                     <SideBar />
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs={7}>
                     <Switch>
                         <Route exact path="/" component={Home} />
                         <Route path="/users" component={UserList}/>
                         <Route path="/signup" component={Signup}/>
                         <Route path="/signin" component={Signin} />
                         <Route path="/user/:userId" component={Profile}/>
-                        <PrivateRoute path="/user/edit/:userId" component={EditProfile}/>
+                        <PrivateRoute path="/edit/:userId" component={EditProfile}/>
                     </Switch>
                 </Grid>
                 <Grid item xs={3}>
-
+                    <About />
                 </Grid>
             </Grid>
         </div>

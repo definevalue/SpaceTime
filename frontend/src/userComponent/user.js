@@ -52,17 +52,17 @@ const read = async (params, credentials, signal) => {
 //update a user record
 const update = async (params, credentials, user) => {
     try {
-        let response = await fetch(`${baseUrl}/users/` + params.userId, {
+        let response = await fetch('/api/users/' + params.userId, {
             method: 'PUT',
             headers: {
                 'Accept': 'application/json',
-                'Authorization': 'Bearer ' + credentials.t
+                'Authorization': 'Bearer ' + credentials.t, 
             },
-            body: JSON.stringify(user)
-        });
-        return await response.json();
+            body: user
+        })
+        return await response.json()
     } catch (err) {
-        console.log(err);
+        console.log(err)
     }
 }
 
@@ -85,7 +85,7 @@ const remove = async (params, credentials) => {
 
 const follow = async (params, credentials, followId) => {
     try {
-        let response = await fetch(`${baseUrl}/users/follow/`, {
+        let response = await fetch(`${baseUrl}/users/post/follow/`, {
             method: 'PUT',
             headers: {
                 'Accept': 'application/json',
@@ -102,7 +102,7 @@ const follow = async (params, credentials, followId) => {
 
 const unfollow = async (params, credentials, unfollowId) => {
     try {
-        let response = await fetch(`${baseUrl}/users/unfollow/`, {
+        let response = await fetch(`${baseUrl}/users/post/unfollow/`, {
             method: 'PUT',
             headers: {
                 'Accept': 'application/json',
@@ -139,4 +139,4 @@ const findPeople = async (params, credentials, signal) => {
 }
 
 
-export { create, list, read, update, remove, follow, unfollow, findPeople};
+export { create, list, read, update, remove, follow, unfollow, findPeople };

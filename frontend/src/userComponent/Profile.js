@@ -22,10 +22,10 @@ import baseUrl from '../config'
 
 const useStyles = makeStyles(theme => ({
     root: theme.mixins.gutters({
-        maxWidth: 600,
+        maxWidth: 800,
         margin: 'auto',
         padding: theme.spacing(3),
-        marginTop: theme.spacing(5)
+        marginTop: theme.spacing(3)
     }),
     title: {
         margin: `${theme.spacing(2)}px ${theme.spacing(1)}px 0`,
@@ -61,7 +61,7 @@ export default function Profile({ match }) {
             } else {
                 let following = checkFollow(data)
                 setValues({ ...values, user: data, following: following })
-                //loadPosts(data._id)
+                loadPosts(data._id)
             }
         })
         return function cleanup() {
@@ -114,7 +114,7 @@ export default function Profile({ match }) {
 
     const photoUrl = values.user._id
         ? `${baseUrl}/users/photo/${values.user._id}?${new Date().getTime()}`
-        : `${baseUrl}/users/defaultphoto`
+        : `${baseUrl}/users/get/defaultphoto`
 
     if (values.redirectToSignin) {
         return <Redirect to='/signin' />
@@ -136,7 +136,7 @@ export default function Profile({ match }) {
                     {
                         auth.isAuthenticated().user && auth.isAuthenticated().user._id == values.user._id
                             ? (<ListItemSecondaryAction>
-                                <Link to={"/user/edit/" + values.user._id}>
+                                <Link to={"/edit/" + values.user._id}>
                                     <IconButton aria-label="Edit" color="primary">
                                         <Edit />
                                     </IconButton>

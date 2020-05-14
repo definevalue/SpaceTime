@@ -9,7 +9,7 @@ import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import auth from '../authComponent/helper'
 import { remove } from './user'
-import { Redirect, Link } from 'react-router-dom'
+import { Redirect} from 'react-router-dom'
 
 export default function DeleteProfile(props) {
     const [open, setOpen] = useState(false)

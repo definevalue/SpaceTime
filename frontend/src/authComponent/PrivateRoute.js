@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import auth from './helper';
 
 //restrict view
+console.log(auth.isAuthenticated() ? 1: 0);
 const PrivateRoute = ({ component: Component, ...rest }) => (
     <Route {...rest} render={props => (
         auth.isAuthenticated() ? (<Component {...props}/>) : (

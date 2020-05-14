@@ -83,8 +83,12 @@ const Signin = (props) => {
                 <Typography variant="h6" className={classes.title}>
                     Sign In
           </Typography>
-                <TextField id="email" type="email" label="Email" className={classes.textField} value={values.email} onChange={handleChange('email')} margin="normal" /><br />
-                <TextField id="password" type="password" label="Password" className={classes.textField} value={values.password} onChange={handleChange('password')} margin="normal" />
+                <TextField id="email" type="email" label="Email (admin1@gmail.com)" className={classes.textField} value={values.email}
+                    onChange={handleChange('email')} margin="normal"
+                    placeholder="admin1@gmail.com" /><br />
+                <TextField id="password" type="password" label="Password (123456)" className={classes.textField} value={values.password}
+                    onChange={handleChange('password')} margin="normal"
+                    placeholder="123456" />
                 <br /> {
                     values.error && (<Typography component="p" color="error">
                         <Icon color="error" className={classes.error}>error</Icon>

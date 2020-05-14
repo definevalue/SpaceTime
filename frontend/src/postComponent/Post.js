@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import Card from '@material-ui/core/Card'
 import CardHeader from '@material-ui/core/CardHeader'
 import CardContent from '@material-ui/core/CardContent'
@@ -122,6 +122,7 @@ const Post = (props) => {
                         <img
                             className={classes.media}
                             src={'/api/posts/photo/' + props.post._id}
+                            alt="Post"
                         />
                     </div>)}
             </CardContent>

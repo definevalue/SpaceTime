@@ -46,7 +46,7 @@ const Comments = (props) => {
         setText(event.target.value)
     }
     const addComment = (event) => {
-        if (event.keyCode == 13 && event.target.value) {
+        if (event.keyCode === 13 && event.target.value) {
             event.preventDefault()
             comment({
                 userId: jwt.user._id

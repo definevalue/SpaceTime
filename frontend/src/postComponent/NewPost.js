@@ -91,7 +91,7 @@ const NewPost = (props) =>  {
             : event.target.value
         setValues({ ...values, [name]: value })
     }
-    const photoURL = values.user._id ? `${baseUrl}/users/photo/` + values.user._id : `${baseUrl}/users/defaultphoto`
+    const photoURL = values.user._id ? `${baseUrl}/users/photo/` + values.user._id : `${baseUrl}/users/get/defaultphoto`
     return (<div className={classes.root}>
         <Card className={classes.card}>
             <CardHeader

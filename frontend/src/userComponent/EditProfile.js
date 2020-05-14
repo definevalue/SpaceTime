@@ -114,7 +114,7 @@ export default function EditProfile({ match }) {
 
     const photoUrl = values.id
         ? `${baseUrl}/users/photo/${values.id}?${new Date().getTime()}`
-        : `${baseUrl}/users/defaultphoto`;
+        : `${baseUrl}/users/get/defaultphoto`;
 
     if (values.redirectToProfile) {
         return (<Redirect to={'/user/' + values.id} />)

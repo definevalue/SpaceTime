@@ -12,10 +12,10 @@ const signin = async (req, res) => {
         if (!user)
             return res.status('401').json({ error: "User not found" })
         //check if password match
-        user.comparePassword(req.body.password, function(err, isMatch) {
-            if (err) throw err;
-            if(!isMatch)  return res.status('401').send({ error: "Email and password don't match." });
-        });
+        const match = await user.comparePassword(req.body.password);
+        if(!match){
+            return res.status(400).json({error: "Email and password don't match"});
+        }
         //generate a token signed with userID
         const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET);
         //create a cookie
