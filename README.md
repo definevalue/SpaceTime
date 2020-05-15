@@ -1,5 +1,5 @@
-# [SpaceTime] 
-SpaceTime is a fully functioning social media website created with JavaScript, Node.js, React, Express, and MongoDB
+# SpaceTime 
+SpaceTime is a fully functioning social media website created with JavaScript, Node.js, React, Express, and MongoDB.
 
 * **Post Feature:** Users of the app can post images and text or like and comments on a post 
 * **Follow Feature:** Users of the app can follow other users
@@ -17,6 +17,7 @@ SpaceTime is a fully functioning social media website created with JavaScript, N
     - MONGO_URI: an uri that connects to a mongo database
     - PORT: the port that the backend runs on (Ex. 3001)
     - JWT_SECRET: any string to authenticate user 
+    - ORIGIN: hosts that the backend accepts requests from (Ex. http://localhost:3000)
 - run command: npm run dev
 - the backend is now on localhost:3001
 
@@ -27,7 +28,9 @@ SpaceTime is a fully functioning social media website created with JavaScript, N
 - the app automatically opens on the browser
 
 ## Deployment
-I you want to visit the app, follow the link below
+If you want to visit the app, follow the link below. Use this test account to login to the app
+- Email: admin1@gmail.com
+- Password: 123456
 
-1. Frontend (click this link to visit the website): 
-2. Baclend:
+1. Frontend (click here to visit the website): https://spacetime-frontend.herokuapp.com/
+2. Backend (this link is to access the backend): https://spacetime-backend.herokuapp.com/
