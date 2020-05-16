@@ -28,7 +28,8 @@ SpaceTime is a fully functioning social media website created with JavaScript, N
 - the app automatically opens on the browser
 
 ## Deployment
-If you want to visit the app, follow the link below. Use this test account to login to the app
+If you want to visit the app, follow the link below (it may take 7-8 seconds for first time visit). 
+Use this test account to login to the app:
 - Email: admin1@gmail.com
 - Password: 123456
 
